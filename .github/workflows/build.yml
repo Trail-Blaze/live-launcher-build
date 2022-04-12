@@ -1,0 +1,53 @@
+# This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
+
+name: Build Electron Application
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [14.x]
+        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - run: npm install
+    - name: Build CSS
+      run: npm run build-css
+   # - name: Build for MacOS
+   #   run: npm run build-mac
+    - name: Install Wine64
+      run: sudo apt-get install wine64
+    - name: Build for Windows x64
+      run: npm run build-win
+   # - name: Build for Linux
+   #   run: npm run build-linux
+      env:
+        testing: yes
+    - name: Commit Build to "build" Branch
+      # continue-on-error: true
+      run: |
+          git config --global user.name 'AlexDev404'
+          git config --global user.email 'alexdev404@users.noreply.github.com'
+          git fetch
+          git checkout -m build --
+          shopt -s extglob
+          wget https://raw.githubusercontent.com/Trail-Blaze/cdn/main/buildCheck.sh
+          sudo chmod +x buildCheck.sh
+          ./buildCheck.sh
+      shell: bash         
