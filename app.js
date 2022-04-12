@@ -35,7 +35,7 @@ const createWindow = () => {
    });
 
    // and load the index.html of the app.
-   document.location = hotreload_base + "escrow.html"
+   win.loadURL(hotreload_base + "escrow.html");
 
    // Open the DevTools.
    // mainWindow.webContents.openDevTools();
@@ -70,7 +70,7 @@ app.on("activate", () => {
 
 ipc.on("reqPageSwitch", (event, data) => {
    console.log("Page Switch Requested.");
-   document.location = `${hotreload_base}${data}`;
+   win.loadURL(`${hotreload_base}${data}`);
 });
 
 let currentState;
