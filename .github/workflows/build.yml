@@ -27,8 +27,8 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - run: npm install
-    - name: Build CSS
-      run: npm run build-css
+   # - name: Build CSS
+   #   run: npm run build-css # There is no CSS..This is a live build LOL
    # - name: Build for MacOS
    #   run: npm run build-mac
     - name: Install Wine64
