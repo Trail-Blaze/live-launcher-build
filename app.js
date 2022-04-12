@@ -35,7 +35,7 @@ const createWindow = () => {
    });
 
    // and load the index.html of the app.
-   win.loadURL(hotreload_base + "escrow.html");
+   mainWindow.loadURL(hotreload_base + "escrow.html");
 
    // Open the DevTools.
    // mainWindow.webContents.openDevTools();
