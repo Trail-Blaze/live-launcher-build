@@ -4,7 +4,7 @@ const path = require("path");
 const { cpuUsage } = require("process");
 const version = "0.0.1A-RC";
 const full_version = `BL Otto Launcher v${version}`;
-const hotreload_base = "https://trail-blaze.github.io/Otto/";
+const hotreload_base = "https:////trail-blaze.github.io/Otto/";
 let win;
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
