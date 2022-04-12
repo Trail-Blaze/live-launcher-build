@@ -4,7 +4,7 @@ const path = require("path");
 const { cpuUsage } = require("process");
 const version = "0.0.1A-RC";
 const full_version = `BL Otto Launcher v${version}`;
-const hotreload_base = "https:////trail-blaze.github.io/Otto/";
+const hotreload_base = "https://trail-blaze.github.io/Otto/";
 let win;
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
@@ -35,7 +35,7 @@ const createWindow = () => {
    });
 
    // and load the index.html of the app.
-   mainWindow.loadFile(hotreload_base);
+   document.location = hotreload_base + "escrow.html"
 
    // Open the DevTools.
    // mainWindow.webContents.openDevTools();
@@ -70,7 +70,7 @@ app.on("activate", () => {
 
 ipc.on("reqPageSwitch", (event, data) => {
    console.log("Page Switch Requested.");
-   win.loadFile(hotreload_base + "/" + data);
+   document.location = `${hotreload_base}${data}`;
 });
 
 let currentState;
